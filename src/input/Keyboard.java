@@ -14,10 +14,6 @@ public class Keyboard {
         keysPressed.remove(e.getKeyCode());
     }
 
-    public static void keyTyped(KeyEvent e) {
-
-    }
-
     public static boolean isKeyPressed(int e) {
         return keysPressed.contains(e);
     }

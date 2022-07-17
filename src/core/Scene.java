@@ -2,6 +2,10 @@ package core;
 
 import java.awt.Graphics2D;
 
+/*
+ * Scene
+ * Base class for all scenes.
+ */
 public abstract class Scene {
     public Scene() {
 

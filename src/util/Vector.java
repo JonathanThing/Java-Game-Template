@@ -14,8 +14,8 @@ public class Vector {
         this.y = 0;
     }
 
-    public Vector castInt() {
-        return new Vector((int) x, (int) y);
+    public IntVector castInt() {
+        return new IntVector((int) x, (int) y);
     }
 
     public Vector abs() {

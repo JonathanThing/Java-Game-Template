@@ -21,10 +21,6 @@ public class Mouse {
         buttonsPressed.remove(e.getButton());
     }
 
-    public static void mouseClicked(MouseEvent e) {
-
-    }
-
     public static boolean isMousePressed(int e) {
         return buttonsPressed.contains(e);
     }

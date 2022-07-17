@@ -1,6 +1,9 @@
-package core;
+package core.scenes;
 
 import java.awt.Graphics2D;
+
+import core.Level;
+import core.Scene;
 
 public class GameScene extends Scene {
 

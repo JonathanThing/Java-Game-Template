@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import core.scenes.MenuScene;
 import input.Keyboard;
 import input.Mouse;
 import util.Const;
@@ -24,7 +25,7 @@ import util.Const;
  */
 
 public class Game {
-    public static JFrame gameWindow;
+    static JFrame gameWindow;
     static GraphicsPanel gamePanel;
 
     static MyKeyListener keyListener = new MyKeyListener();
@@ -63,15 +64,11 @@ public class Game {
         runGame();
     }
 
+    // Game loop
     public static void runGame() {
-
-        changeScene(new GameScene());
-        changeScene(new MenuScene());
-
         while (true) {
             currentScene.update();
             gameWindow.repaint();
-
             try {
                 Thread.sleep(1000 / Const.FPS);
             } catch (InterruptedException e) {
@@ -80,16 +77,16 @@ public class Game {
         }
     }
 
-    static class GraphicsPanel extends JPanel {
+    public static class GraphicsPanel extends JPanel {
         public GraphicsPanel() {
             setFocusable(true);
             requestFocusInWindow();
         }
 
+        // Draw the game
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
-
             currentScene.draw(g2);
         }
     }
@@ -97,7 +94,6 @@ public class Game {
     static class MyKeyListener implements KeyListener {
         public void keyPressed(KeyEvent e) {
             Keyboard.keyPressed(e);
-            System.out.println("hello");
         }
 
         public void keyReleased(KeyEvent e) {
@@ -105,13 +101,11 @@ public class Game {
         }
 
         public void keyTyped(KeyEvent e) {
-            Keyboard.keyTyped(e);
         }
     }
 
     static class MyMouseListener implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            Mouse.mouseClicked(e);
         }
 
         public void mousePressed(MouseEvent e) {
@@ -147,5 +141,9 @@ public class Game {
     public static void changeScene(Scene scene) {
         currentScene = scene;
         gamePanel.removeAll();
+    }
+
+    public static GraphicsPanel getGamePanel() {
+        return gamePanel;
     }
 }
