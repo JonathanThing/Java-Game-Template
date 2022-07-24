@@ -1,30 +1,41 @@
 package input;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
 
-import util.Vector;
+import core.Game;
 
-public class Mouse {
-    public static HashSet<Integer> buttonsPressed = new HashSet<Integer>();
-    public static Vector mousePosition = new Vector(0, 0);
+public class Mouse extends MouseAdapter {
 
-    public static void updatePosition(MouseEvent e) {
-        mousePosition.setVector(e.getX(), e.getY());
+    private static Mouse mouseInstance;
+    private HashSet<Integer> buttonsPressed = new HashSet<Integer>();
+
+    private Mouse() {
+        Game.getInstance().getGameWindow().addMouseListener(this);
     }
 
-    public static void mousePressed(MouseEvent e) {
+    public static Mouse getInstance() {
+        if (mouseInstance == null) {
+            mouseInstance = new Mouse();
+        }
+        return mouseInstance;
+    }
+
+    public boolean isButtonPressed(int button) {
+        return buttonsPressed.contains(button);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println("pressed");
         buttonsPressed.add(e.getButton());
     }
 
-    public static void mouseReleased(MouseEvent e) {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("released");
         buttonsPressed.remove(e.getButton());
     }
 
-    public static boolean isMousePressed(int e) {
-        return buttonsPressed.contains(e);
-    }
-
-    public Mouse() {
-    }
 }

@@ -1,7 +1,8 @@
 import core.Game;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        new Game();
+    public static void main(String[] args) {
+        Game game = Game.getInstance();
+        game.start();
     }
 }

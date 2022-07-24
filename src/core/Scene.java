@@ -1,17 +1,19 @@
 package core;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
-/*
- * Scene
- * Base class for all scenes.
- */
-public abstract class Scene {
+public class Scene {
     public Scene() {
 
     }
 
-    public abstract void update();
+    public void render(Graphics2D g2) {
+        g2.setColor(Color.GREEN);
+        g2.fillRect(0, 0, 100, 100);
+    }
 
-    public abstract void draw(Graphics2D g2);
+    public void update() {
+
+    }
 }
