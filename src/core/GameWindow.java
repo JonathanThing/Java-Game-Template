@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 
 import util.Const;
 
+/**
+ * Code for JFrame
+ */
 public class GameWindow extends JFrame {
     private GraphicsPanel graphicsPanel;
 
@@ -14,14 +17,12 @@ public class GameWindow extends JFrame {
         add(graphicsPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(Const.FRAME_WIDTH, Const.FRAME_HEIGHT);
-        setVisible(true);
+        setResizable(true);
+        setFocusable(true);
     }
 
     public GraphicsPanel getGraphicsPanel() {
         return graphicsPanel;
     }
 
-    public void setGraphicsPanel(GraphicsPanel graphicsPanel) {
-        this.graphicsPanel = graphicsPanel;
-    }
 }

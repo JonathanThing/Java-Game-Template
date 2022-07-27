@@ -6,15 +6,24 @@ import java.util.HashSet;
 
 import core.Game;
 
+/**
+ * Singleton class to represnt the mouse for user input
+ */
 public class Mouse extends MouseAdapter {
 
-    private static Mouse mouseInstance;
-    private HashSet<Integer> buttonsPressed = new HashSet<Integer>();
+    private static Mouse mouseInstance; // Mouse instance for singleton pattern
+    private HashSet<Integer> buttonsPressed = new HashSet<Integer>(); // Hashset storing all mouse buttons pressed
 
     private Mouse() {
-        Game.getInstance().getGameWindow().addMouseListener(this);
+        Game.getInstance().getGameWindow().getGraphicsPanel().addMouseListener(this);
     }
 
+    /**
+     * Returns the mouse instance.
+     * If no mouse instance exists, creates one.
+     * 
+     * @return mouse instance
+     */
     public static Mouse getInstance() {
         if (mouseInstance == null) {
             mouseInstance = new Mouse();
@@ -28,13 +37,11 @@ public class Mouse extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("pressed");
         buttonsPressed.add(e.getButton());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("released");
         buttonsPressed.remove(e.getButton());
     }
 
